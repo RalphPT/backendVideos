@@ -12,6 +12,7 @@ def test_sumar_error():
     assert resultado == 'ac'
 
 def test_dividir():
-    with pytest.raises(ZeroDivisionError):
-        resultado = dividir(10, 0)
-        assert resultado == 0 #Con el pytest ya no será necesario colocar el assert, porque estamos capturando el error o testeando si en caso tuviéramos un error
+    with pytest.raises(ZeroDivisionError) as resultado: # esto es similar como poner --- =>
+        dividir(10, 0) # --- => resultado = dividir(10, 0)
+        #assert resultado == 0 #Con el pytest ya no será necesario colocar el assert, porque estamos capturando el error o testeando si en caso tuviéramos un error
+    assert resultado.errisinstance(ZeroDivisionError) #No AttributeError porque el error que emite la división entre 0 pertenece al error ZeroDivisionError
